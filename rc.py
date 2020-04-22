@@ -4,14 +4,13 @@ from os import remove
 import schedule
 
 
-if __name__ == '__main__':
-
+def job():
     user = ""
     password = ""
     to = ""
 
     subject = "速算练习"
-    text = "祝宝贝天天开心，考公上岸！！！     from 爱你的宝贝"
+    text = "祝宝贝天天开心！！！     from 爱你的宝贝"
 
     send_to_mxn = QQEmail(user=user, pwd=password, to=to)
     for digit in range(2, 4):
@@ -20,6 +19,16 @@ if __name__ == '__main__':
         sleep(3)
         for file in files:
             remove(file)
+
+
+if __name__ == '__main__':
+    schedule.every().day.at("20:00").do(job)
+
+    while True:
+        schedule.run_pending()
+        sleep(1)
+
+
 
 
 
