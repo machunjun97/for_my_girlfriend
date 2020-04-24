@@ -30,7 +30,7 @@ class QQEmail:
             part.add_header('Content-Disposition', 'attachment', filename=file)
             msg.attach(part)
 
-        s = smtplib.SMTP("smtp.qq.com", timeout=30)  # 连接smtp邮件服务器,端口默认是25
+        s = smtplib.SMTP_SSL("smtp.qq.com", 465)  # 连接smtp邮件服务器,SSL使用465端口
         s.login(self._user, self._pwd)  # 登陆服务器
         s.sendmail(self._user, self._to, msg.as_string())  # 发送邮件
         s.close()
